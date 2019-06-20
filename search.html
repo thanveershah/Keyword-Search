@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      .colors {
+        color: white;
+        background: red;
+      }
+      div {
+        padding: 10px;
+      }
+
+      #check {
+        height: 200px;
+        overflow: scroll;
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" />
+    <button id="btn" onclick="highlightSearch()">Search</button>
+    <button onclick="next()">Next</button>
+    <button onclick="prev()">Prev</button>
+    <p id="check">
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+      Hi this is a test , this is a test , Hi this is a test , this is a test ,
+    </p>
+    <b id="result" style="color:green"></b>
+    <p id="checkIndex"></p>
+    <script>
+      var input = document.querySelector("input");
+      var para = document.querySelector("p");
+      var text = para.innerHTML;
+      var words = text.split(" ");
+      var ids = [];
+      var index = 0;
+
+      function highlightSearch() {
+        for (i = 0; i <= words.length; i++) {
+          if (words[i] === input.value) {
+            words[i] =
+              "<span class='colors' id=" + i + ">" + input.value + "</span>";
+            ids.push(i);
+
+            para.innerHTML = words.join(" ");
+          }
+        }
+
+        document.getElementById("result").innerHTML = `Search result : ${
+          ids.length
+        } `;
+      }
+
+      function next() {
+        if (index != 0 || index > 0 || index < 0) {
+          document.getElementById(ids[index - 1]).style.color = "white";
+          document.getElementById(ids[index - 1]).style.background = "red";
+        }
+        document.getElementById(ids[index]).style.color = "white";
+        document.getElementById(ids[index]).style.background = "orange";
+        document.getElementById(ids[index]).scrollIntoView();
+
+        if (ids.length - 1 == index) {
+          index = 0;
+        } else {
+          index++;
+        }
+      }
+
+      function prev() {
+        if (index == 1) {
+          return false;
+        }
+
+        if (ids[index - 1] == ids[index - 1]) {
+          document.getElementById(ids[index - 1]).style.color = "white";
+          document.getElementById(ids[index - 1]).style.background = "red";
+          index--;
+        }
+        document.getElementById(ids[index]).scrollIntoView();
+        document.getElementById(ids[index - 1]).style.color = "white";
+        document.getElementById(ids[index - 1]).style.background = "orange";
+      }
+    </script>
+  </body>
+</html>
